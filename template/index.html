@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELECTRONIC SHOP</title>
+</head>
+<body>
+    {% block content %}
+    <form action="/shop_create/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+    <input type="submit" value="submit">
+
+</form>    
+<table>
+<tr>
+    <th> SHOP NAME </th>
+</tr>
+{% for d in data %}
+<tr>
+<td></td>
+<td>{{ d.shop_name }} </td>
+<td><a href="/shop_delete/{{ d.id }}"><button type="button">Delete</button></a></td>
+
+
+{% endfor %}
+{% endblock %}
+</tr>
+</table>
+</body>
+</html>
