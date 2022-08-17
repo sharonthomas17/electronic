@@ -29,5 +29,5 @@ class ShopForm(ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model= Elect_shop
-        fields= ['item_name']
+        fields= ['item_name','shop_name']
         

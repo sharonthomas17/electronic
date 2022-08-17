@@ -1,4 +1,3 @@
-from unicodedata import name
 from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
@@ -22,13 +21,26 @@ def shop_delete(request,pk):
     name.delete()
     return redirect(shop_view)
 
+def shop_update(request,pk):
+    upd=Shop.objects.get(id=pk)
+    upd.delete()
+    form=ShopForm(instance=upd)
+
+
+    context={'form': form}
+    return render(request,'index.html',context)
+    
+
 
 
 def item_view(request):
     var=list(Elect_shop.objects.values())
+    lis=list(Shop.objects.values())
     form3=ItemForm()
     d1={'form': form3,
-        'data': var }
+        'data': var ,
+        'li' : lis
+     }
     return render(request,"disp.html",d1)
 
 def item_creat(request):
@@ -39,7 +51,16 @@ def item_creat(request):
     return redirect(item_view)
 
 def item_delete(request,pk):
-    name=list(Elect_shop.objects.get(id=pk))
+    name=Elect_shop.objects.get(id=pk)
     name.delete()
     return redirect(item_view)
+    
+def item_update(request,pk):
+    upd=Elect_shop.objects.get(id=pk)
+    upd.delete()
+    form=ItemForm(instance=upd)
+    
+
+    context={'form': form}
+    return render(request,'disp.html',context)
     
